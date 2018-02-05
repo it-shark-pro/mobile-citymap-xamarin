@@ -17,6 +17,8 @@ namespace CityMap.iOS
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
 
+            new App().Initialize();
+
             return true;
         }
 

@@ -13,6 +13,8 @@ namespace CityMap.Droid
         {
             base.OnCreate(savedInstanceState);
 
+            new CityMap.App().Initialize();
+
             StartActivity(new Intent(this, typeof(CitiesActivity)));
             Finish();
         }
