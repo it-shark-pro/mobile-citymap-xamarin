@@ -4,7 +4,7 @@ using Android.Support.V7.App;
 
 namespace CityMap.Droid.Views
 {
-    [Activity(Label = "@string/app_name", MainLauncher = true)]
+    [Activity(Label = "@string/app_name")]
     public class MainActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
