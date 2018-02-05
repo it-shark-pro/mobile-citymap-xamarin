@@ -10,7 +10,7 @@ namespace CityMap.Services
 {
     public class CityService : ICityService
     {
-        private const string ApiUrl = "https://api.myjson.com/bins/upt7z";
+        private const string ApiUrl = "https://api.myjson.com/bins/7ybe5";
         private const string NoInternetExceptionMessage = "No internet connection!";
 
         public async Task<IEnumerable<City>> LoadCitiesAsync()
