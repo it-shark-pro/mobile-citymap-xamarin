@@ -2,6 +2,8 @@
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Widget;
+using FFImageLoading;
+using FFImageLoading.Views;
 
 namespace CityMap.Droid.Views.CityDetails
 {
@@ -10,6 +12,7 @@ namespace CityMap.Droid.Views.CityDetails
     {
         private string _cityName;
         private string _cityDescription;
+        private string _cityImageUrl;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -19,8 +22,8 @@ namespace CityMap.Droid.Views.CityDetails
 
             LoadNavigationParameters();
 
-            InitializeToolbar();
-            InitializeViews();
+            SetupToolbar();
+            SetupUI();
         }
 
         public override bool OnSupportNavigateUp()
@@ -35,9 +38,10 @@ namespace CityMap.Droid.Views.CityDetails
 
             _cityName = extras.GetString(ViewConstants.ExtraCityName, string.Empty);
             _cityDescription = extras.GetString(ViewConstants.ExtraCityDescription, string.Empty);
+            _cityImageUrl = extras.GetString(ViewConstants.ExtraCityImageUrl, string.Empty);
         }
 
-        private void InitializeToolbar()
+        private void SetupToolbar()
         {
             var actionbar = SupportActionBar;
             actionbar.SetDisplayHomeAsUpEnabled(true);
@@ -45,11 +49,16 @@ namespace CityMap.Droid.Views.CityDetails
             actionbar.Title = _cityName;
         }
 
-        private void InitializeViews()
+        private void SetupUI()
         {
             var descriptionTextView = FindViewById<TextView>(Resource.Id.text_view_city_details_description);
+            var photoImageView = FindViewById<ImageViewAsync>(Resource.Id.image_view_city_details_photo);
 
             descriptionTextView.Text = _cityDescription;
+
+            ImageService.Instance
+                        .LoadUrl(_cityImageUrl)
+                        .Into(photoImageView);
         }
     }
 }

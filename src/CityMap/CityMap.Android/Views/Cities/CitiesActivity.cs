@@ -1,11 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Widget;
-using Android.Runtime;
 using Android.Content;
+using Android.Support.V7.Widget;
 using CityMap.Models;
 using CityMap.Services;
 using CityMap.Droid.Views.CityDetails;
@@ -15,58 +16,93 @@ namespace CityMap.Droid.Views.Cities
     [Activity(Label = "@string/activity_sities_title")]
     public class CitiesActivity : AppCompatActivity
     {
-        private const string CityNameAttribute = "CityName";
-        private const string CountryNameAttribute = "CountryName";
+        private readonly ICityService _cityService = new CityService();
 
-        private ListView _citiesListView;
+        private CityAdapter _cityAdapter;
+        private ProgressDialog _progressDialog;
 
-        private IEnumerable<City> Cities { get; } = new CityService().Capitals;
+        private IEnumerable<City> Cities { get; set; } = Enumerable.Empty<City>();
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.activity_cities);
 
-            InitializeListView();
+            _progressDialog = CreateProgressDialog();
+
+            SetupAdapter();
+
+            SetupRecyclerView();
+
+            await LoadDataAsync();
         }
 
-        private void InitializeListView()
+        private void SetupRecyclerView()
         {
-            var data = new JavaList<IDictionary<string, object>>();
-            foreach (var city in Cities)
+            var citiesLayoutManager = new GridLayoutManager(ApplicationContext, ViewConstants.GridLayoutSpanCount);
+
+            var citiesRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycler_view_main_cities_list);
+
+            citiesRecyclerView.SetLayoutManager(citiesLayoutManager);
+            citiesRecyclerView.SetAdapter(_cityAdapter);
+        }
+
+        private void SetupAdapter()
+        {
+            _cityAdapter = new CityAdapter();
+            _cityAdapter.ItemClicked += CityAdapterOnItemClicked;
+        }
+
+        private async Task LoadDataAsync()
+        {
+            _progressDialog.Show();
+
+            try
             {
-                data.Add(new JavaDictionary<string, object>
-                {
-                    {CityNameAttribute, city.Name},
-                    {CountryNameAttribute, city.Country.Name}
-                });
+                Cities = await _cityService.LoadCitiesAsync();
+
+                _cityAdapter.Update(Cities);
             }
-
-            var from = new[] { CityNameAttribute, CountryNameAttribute };
-            var to = new[] { Android.Resource.Id.Text1, Android.Resource.Id.Text2 };
-
-            _citiesListView = FindViewById<ListView>(Resource.Id.list_view_main_cities_list);
-            _citiesListView.Adapter = new SimpleAdapter(this, data, Android.Resource.Layout.SimpleListItem2, from, to);
-            _citiesListView.ItemClick += CitiesListViewOnItemClick;
+            catch (Exception exception)
+            {
+                ShowAlert("Error", exception.Message);
+            }
+            finally
+            {
+                _progressDialog.Hide();
+            }
         }
 
-        private void CitiesListViewOnItemClick(object sender, AdapterView.ItemClickEventArgs args)
+        private void CityAdapterOnItemClicked(object sender, int position)
         {
-            var cityModel = Cities.ToArray()[args.Position];
+            var cityModel = Cities.ToArray()[position];
 
             var detailedActivityIntent = new Intent(this, typeof(CityDetailsActivity));
-            detailedActivityIntent.PutExtra(ViewConstants.ExtraCityName, cityModel.Name);
+            detailedActivityIntent.PutExtra(ViewConstants.ExtraCityName, cityModel.Title);
             detailedActivityIntent.PutExtra(ViewConstants.ExtraCityDescription, cityModel.Description);
+            detailedActivityIntent.PutExtra(ViewConstants.ExtraCityImageUrl, cityModel.Url);
 
             StartActivity(detailedActivityIntent);
         }
+
+        private void ShowAlert(string title, string message)
+        {
+            new Android.Support.V7.App.AlertDialog.Builder(this)
+                .SetTitle(title)
+                .SetMessage(message)
+                .SetNegativeButton("Ok", delegate {})
+                .SetCancelable(true)
+                .Show();
+        }
+
+        private ProgressDialog CreateProgressDialog() => new ProgressDialog(this) { Indeterminate = true };
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                _citiesListView.ItemClick -= CitiesListViewOnItemClick;
+                _cityAdapter.ItemClicked -= CityAdapterOnItemClicked;
             }
 
             base.Dispose(disposing);

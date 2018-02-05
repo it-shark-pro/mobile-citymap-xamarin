@@ -17,4 +17,12 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="TextAppearance.Base.Bold" parent="TextAppearance.Base">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Base.Bold.White" parent="TextAppearance.Base.Bold">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>
