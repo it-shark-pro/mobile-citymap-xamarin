@@ -8,7 +8,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace CityMap.iOS
+namespace CityMap.iOS.Views
 {
     [Register ("ViewController")]
     partial class ViewController

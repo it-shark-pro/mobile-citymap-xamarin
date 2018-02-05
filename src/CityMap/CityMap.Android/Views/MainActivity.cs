@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.OS;
 
-namespace CityMap.Droid
+namespace CityMap.Droid.Views
 {
     [Activity(Label = "@string/app_name", MainLauncher = true)]
     public class MainActivity : Activity
@@ -11,7 +11,7 @@ namespace CityMap.Droid
             base.OnCreate(savedInstanceState);
 
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
+            SetContentView(Resource.Layout.activity_main);
         }
     }
 }

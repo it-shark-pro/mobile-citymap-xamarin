@@ -2,7 +2,7 @@
 
 using UIKit;
 
-namespace CityMap.iOS
+namespace CityMap.iOS.Views
 {
     public partial class ViewController : UIViewController
     {
