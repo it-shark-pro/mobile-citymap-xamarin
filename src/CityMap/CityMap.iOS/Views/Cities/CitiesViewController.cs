@@ -1,39 +1,93 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Linq;
+using System.Collections.Generic;
 using UIKit;
+using Foundation;
 using CityMap.Models;
 using CityMap.Services;
 using CityMap.iOS.Views.CityDetails;
 
 namespace CityMap.iOS.Views.Cities
 {
-    public partial class CitiesViewController : UITableViewController
+    public partial class CitiesViewController : UIViewController, IUICollectionViewDelegate, IUICollectionViewDataSource
     {
+        private const string CityCellIdentifier = "CityCellIdentifier";
         private const string ShowCityDetailIdentifier = "ShowCityDetails";
 
-        private IEnumerable<City> Cities { get; } = new CityService().Capitals;
+        private readonly ICityService _cityService = new CityService();
+
+        private IEnumerable<City> Cities { get; set; } = Enumerable.Empty<City>();
 
         public CitiesViewController(IntPtr handler) : base(handler)
         {
         }
 
-        public override void ViewDidLoad()
+        public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-            TableView.TableFooterView = new UIView();
-            TableView.Source = new CitiesTableViewSource(Cities.ToArray());
+            collectionView.Delegate = this;
+            collectionView.DataSource = this;
+            collectionView.CollectionViewLayout = new CitiesCollectionLayout();
+
+            await LoadDataAsync();
         }
 
-        public override void PrepareForSegue(UIStoryboardSegue segue, Foundation.NSObject sender)
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
             if (segue.Identifier.Equals(ShowCityDetailIdentifier)
                 && segue.DestinationViewController is CityDetailsViewController detailsController
-                && sender is CityTableViewCell selectedCell)
+                && sender is CityViewCell selectedCell)
             {
                 detailsController.City = selectedCell.City;
             }
+        }
+
+        private async Task LoadDataAsync()
+        {
+            activityIndicator.StartAnimating();
+
+            try
+            {
+                Cities = await _cityService.LoadCitiesAsync();
+
+                collectionView.ReloadData();
+            }
+            catch (Exception exception)
+            {
+                ShowAlert("Error", exception.Message);
+            }
+            finally
+            {
+                activityIndicator.StopAnimating();
+            }
+        }
+
+        private void ShowAlert(string title, string message)
+        {
+            var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+            okAlertController.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
+
+            PresentViewController(okAlertController, true, null);
+        }
+
+        // UICollectionViewDataSource
+
+        public nint GetItemsCount(UICollectionView collectionView, nint section)
+        {
+            return Cities.Count();
+        }
+
+        public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
+        {
+            if (collectionView.DequeueReusableCell(CityCellIdentifier, indexPath) is CityViewCell cityCell)
+            {
+                cityCell.City = Cities.ToArray()[indexPath.Row];
+
+                return cityCell;
+            }
+            return new UICollectionViewCell();
         }
     }
 }

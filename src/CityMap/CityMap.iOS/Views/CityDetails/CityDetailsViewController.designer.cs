@@ -14,13 +14,23 @@ namespace CityMap.iOS.Views.CityDetails
     partial class CityDetailsViewController
     {
         [Outlet]
+        UIKit.UIImageView cityImage { get; set; }
+
+        [Outlet]
         UIKit.UILabel descriptionLabel { get; set; }
 
-        void ReleaseDesignerOutlets ()
+        void ReleaseDesignerOutlets()
         {
-            if (descriptionLabel != null) {
-                descriptionLabel.Dispose ();
+            if (descriptionLabel != null)
+            {
+                descriptionLabel.Dispose();
                 descriptionLabel = null;
+            }
+
+            if (cityImage != null)
+            {
+                cityImage.Dispose();
+                cityImage = null;
             }
         }
     }

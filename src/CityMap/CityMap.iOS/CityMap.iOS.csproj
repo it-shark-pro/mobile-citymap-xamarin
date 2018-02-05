@@ -171,14 +171,14 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Views\Cities\CitiesTableViewSource.cs" />
+    <Compile Include="Views\Cities\CitiesCollectionLayout.cs" />
     <Compile Include="Views\Cities\CitiesViewController.cs" />
     <Compile Include="Views\Cities\CitiesViewController.designer.cs">
       <DependentUpon>CitiesViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Cities\CityTableViewCell.cs" />
-    <Compile Include="Views\Cities\CityTableViewCell.designer.cs">
-      <DependentUpon>CityTableViewCell.cs</DependentUpon>
+    <Compile Include="Views\Cities\CityViewCell.cs" />
+    <Compile Include="Views\Cities\CityViewCell.designer.cs">
+      <DependentUpon>CityViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\CityDetails\CityDetailsViewController.cs" />
     <Compile Include="Views\CityDetails\CityDetailsViewController.designer.cs">

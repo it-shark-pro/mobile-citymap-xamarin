@@ -14,8 +14,25 @@ namespace CityMap.iOS.Views.Cities
     [Register ("CitiesViewController")]
     partial class CitiesViewController
     {
-        void ReleaseDesignerOutlets ()
+        [Outlet]
+        UIKit.UIActivityIndicatorView activityIndicator { get; set; }
+
+        [Outlet]
+        UIKit.UICollectionView collectionView { get; set; }
+
+        void ReleaseDesignerOutlets()
         {
+            if (collectionView != null)
+            {
+                collectionView.Dispose();
+                collectionView = null;
+            }
+
+            if (activityIndicator != null)
+            {
+                activityIndicator.Dispose();
+                activityIndicator = null;
+            }
         }
     }
 }

@@ -4,9 +4,9 @@ using CityMap.Models;
 
 namespace CityMap.iOS.Views.Cities
 {
-    public partial class CityTableViewCell : UITableViewCell
+    public partial class CityViewCell : UICollectionViewCell
     {
-        protected CityTableViewCell(IntPtr handle) : base(handle)
+        protected CityViewCell(IntPtr handle) : base(handle)
         {
         }
 
@@ -17,10 +17,9 @@ namespace CityMap.iOS.Views.Cities
             get => _city;
             set
             {
-                _city = value;
+                _city = value; 
 
-                cityLabel.Text = value.Name;
-                countryLabel.Text = value.Country.Name;
+                cityLabel.Text = value.Title;
             }
         }
     }

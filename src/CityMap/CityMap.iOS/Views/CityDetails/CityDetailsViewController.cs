@@ -16,7 +16,12 @@ namespace CityMap.iOS.Views.CityDetails
         {
             base.ViewDidLoad();
 
-            Title = City.Name;
+            SetupData();
+        }
+
+        private void SetupData()
+        {
+            Title = City.Title;
             descriptionLabel.Text = City.Description;
         }
     }
