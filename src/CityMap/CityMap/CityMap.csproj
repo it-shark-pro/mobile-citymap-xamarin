@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Yauheni Pakala</Authors>
+    <Company>IT-Sharp</Company>
+  </PropertyGroup>
+
+</Project>
