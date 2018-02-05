@@ -5,8 +5,10 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Widget;
 using Android.Runtime;
+using Android.Content;
 using CityMap.Models;
 using CityMap.Services;
+using CityMap.Droid.Views.CityDetails;
 
 namespace CityMap.Droid.Views.Cities
 {
@@ -53,7 +55,11 @@ namespace CityMap.Droid.Views.Cities
         {
             var cityModel = Cities.ToArray()[args.Position];
 
-            // TODO: navigate to details
+            var detailedActivityIntent = new Intent(this, typeof(CityDetailsActivity));
+            detailedActivityIntent.PutExtra(ViewConstants.ExtraCityName, cityModel.Name);
+            detailedActivityIntent.PutExtra(ViewConstants.ExtraCityDescription, cityModel.Description);
+
+            StartActivity(detailedActivityIntent);
         }
 
         protected override void Dispose(bool disposing)
