@@ -4,6 +4,7 @@ using System.Linq;
 using UIKit;
 using CityMap.Models;
 using CityMap.Services;
+using CityMap.iOS.Views.CityDetails;
 
 namespace CityMap.iOS.Views.Cities
 {
@@ -23,6 +24,16 @@ namespace CityMap.iOS.Views.Cities
 
             TableView.TableFooterView = new UIView();
             TableView.Source = new CitiesTableViewSource(Cities.ToArray());
+        }
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, Foundation.NSObject sender)
+        {
+            if (segue.Identifier.Equals(ShowCityDetailIdentifier)
+                && segue.DestinationViewController is CityDetailsViewController detailsController
+                && sender is CityTableViewCell selectedCell)
+            {
+                detailsController.City = selectedCell.City;
+            }
         }
     }
 }
