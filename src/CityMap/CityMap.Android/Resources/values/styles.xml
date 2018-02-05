@@ -13,4 +13,8 @@
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 
+    <style name="TextAppearance.Base" parent="@android:style/TextAppearance">
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>
