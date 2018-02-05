@@ -1,22 +1,24 @@
 ﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using CityMap.Models;
 
 namespace CityMap.Services
 {
-    public class CityService
+    public class CityService : ICityService
     {
-        public IEnumerable<City> Capitals { get; } = new[]
+        private const string ApiUrl = "https://api.myjson.com/bins/upt7z";
+
+        public async Task<IEnumerable<City>> LoadCitiesAsync()
         {
-            new City { Name = "Minsk", Country = new Country { Name = "Belarus" }},
-            new City { Name = "Warsaw", Country = new Country { Name = "Poland" }},
-            new City { Name = "Berlin", Country = new Country { Name = "Germany" }},
-            new City { Name = "Amsterdam", Country = new Country { Name = "Netherland" }},
-            new City { Name = "Oslo", Country = new Country { Name = "Norway" }},
-            new City { Name = "Lisbon", Country = new Country { Name = "Portugal" }},
-            new City { Name = "Madrid", Country = new Country { Name = "Spain" }},
-            new City { Name = "Moskow", Country = new Country { Name = "Russia" }},
-            new City { Name = "Kiev", Country = new Country { Name = "Ukraine" }},
-            new City { Name = "Stockholm", Country = new Country { Name = "Sweden" }},
-        };
+            using (var httpClient = new HttpClient())
+            {
+                var jsonResponse = await httpClient.GetStringAsync(ApiUrl);
+                var response = JsonConvert.DeserializeObject<ApiResponse>(jsonResponse);
+
+                return response.Photos;
+            }
+        }
     }
 }

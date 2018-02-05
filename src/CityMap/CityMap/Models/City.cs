@@ -2,10 +2,14 @@
 {
     public class City
     {
-        public string Name { get; set; }
+        public string Title { get; set; }
 
-        public Country Country { get; set; }
+        public string Description { get; set; }
 
-        public string Description => $"{Name} is a beautiful city that is located in {Country.Name} country.More information will be available in the future versions of program.Stay tuned!";
+        public string Url { get; set; }
+
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
     }
 }
