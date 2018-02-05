@@ -1,5 +1,6 @@
 ﻿using System;
 using UIKit;
+using FFImageLoading;
 using CityMap.Models;
 
 namespace CityMap.iOS.Views.CityDetails
@@ -23,6 +24,10 @@ namespace CityMap.iOS.Views.CityDetails
         {
             Title = City.Title;
             descriptionLabel.Text = City.Description;
+
+            ImageService.Instance
+                        .LoadUrl(City.Url)
+                        .Into(cityImage);
         }
     }
 }
