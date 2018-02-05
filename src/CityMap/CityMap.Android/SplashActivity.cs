@@ -2,7 +2,7 @@
 using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
-using CityMap.Droid.Views;
+using CityMap.Droid.Views.Cities;
 
 namespace CityMap.Droid
 {
@@ -13,7 +13,7 @@ namespace CityMap.Droid
         {
             base.OnCreate(savedInstanceState);
 
-            StartActivity(new Intent(this, typeof(MainActivity)));
+            StartActivity(new Intent(this, typeof(CitiesActivity)));
             Finish();
         }
     }
