@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
+using Android.Views;
 using Android.Content;
 using Android.Support.V7.Widget;
+using Newtonsoft.Json;
 using CityMap.Models;
 using CityMap.Services;
 using CityMap.Droid.Views.CityDetails;
+using CityMap.Droid.Views.Map;
 
 namespace CityMap.Droid.Views.Cities
 {
@@ -97,6 +100,26 @@ namespace CityMap.Droid.Views.Cities
         }
 
         private ProgressDialog CreateProgressDialog() => new ProgressDialog(this) { Indeterminate = true };
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.cities_menu, menu);
+            return true;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.show_on_map:
+                    // TODO: only for simple example
+                    var mapActivityIntent = new Intent(this, typeof(MapActivity));
+                    mapActivityIntent.PutExtra(ViewConstants.ExtraCities, JsonConvert.SerializeObject(Cities));
+                    StartActivity(mapActivityIntent);
+                    break;
+            }
+            return true;
+        }
 
         protected override void Dispose(bool disposing)
         {
