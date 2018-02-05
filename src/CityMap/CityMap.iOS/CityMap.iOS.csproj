@@ -215,6 +215,10 @@
     <Compile Include="Views\CityDetails\CityDetailsViewController.designer.cs">
       <DependentUpon>CityDetailsViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Map\MapViewController.cs" />
+    <Compile Include="Views\Map\MapViewController.designer.cs">
+      <DependentUpon>MapViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewConstants.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -51,7 +51,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="obu-a8-eVX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="553" y="107"/>
+            <point key="canvasLocation" x="551.25" y="106.69014084507042"/>
+        </scene>
+        <!--Global Map-->
+        <scene sceneID="Fyq-uX-kXU">
+            <objects>
+                <viewController title="Global Map" id="9pU-ki-ih0" customClass="MapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fyx-y8-XUi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9y2-TY-JqQ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9y2-TY-JqQ" firstAttribute="trailing" secondItem="1t6-wC-KQA" secondAttribute="trailing" id="9t7-dx-p04"/>
+                            <constraint firstItem="9y2-TY-JqQ" firstAttribute="leading" secondItem="1t6-wC-KQA" secondAttribute="leading" id="DgN-nx-aOz"/>
+                            <constraint firstItem="9y2-TY-JqQ" firstAttribute="bottom" secondItem="1t6-wC-KQA" secondAttribute="bottom" id="T30-5Z-k3e"/>
+                            <constraint firstItem="9y2-TY-JqQ" firstAttribute="top" secondItem="Fyx-y8-XUi" secondAttribute="top" id="VAc-Te-xC2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1t6-wC-KQA"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="9y2-TY-JqQ" id="eOd-N4-ARC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VgD-6B-hRI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="551" y="908"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="F2G-aQ-JZW">
@@ -155,7 +184,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="T4I-DZ-7pm"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Cities" id="LYh-qI-2ys"/>
+                    <navigationItem key="navigationItem" title="Cities" id="LYh-qI-2ys">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="txY-Hq-Ytn">
+                            <connections>
+                                <segue destination="9pU-ki-ih0" kind="show" identifier="ShowMap" id="B8v-YK-PeB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="MMG-mp-x5a" id="ob1-he-XgD"/>
                         <outlet property="collectionView" destination="oIS-JF-5Sc" id="6LL-cB-9pk"/>

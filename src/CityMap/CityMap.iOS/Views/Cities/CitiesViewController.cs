@@ -7,13 +7,15 @@ using Foundation;
 using CityMap.Models;
 using CityMap.Services;
 using CityMap.iOS.Views.CityDetails;
+using CityMap.iOS.Views.Map;
 
 namespace CityMap.iOS.Views.Cities
 {
     public partial class CitiesViewController : UIViewController, IUICollectionViewDelegate, IUICollectionViewDataSource
     {
         private const string CityCellIdentifier = "CityCellIdentifier";
-        private const string ShowCityDetailIdentifier = "ShowCityDetails";
+        private const string ShowCityDetailSegue = "ShowCityDetails";
+        private const string ShowMapSegue = "ShowMap";
 
         private readonly ICityService _cityService = new CityService();
 
@@ -36,11 +38,23 @@ namespace CityMap.iOS.Views.Cities
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
-            if (segue.Identifier.Equals(ShowCityDetailIdentifier)
-                && segue.DestinationViewController is CityDetailsViewController detailsController
-                && sender is CityViewCell selectedCell)
+            switch (segue.Identifier)
             {
-                detailsController.City = selectedCell.City;
+                case ShowCityDetailSegue:
+
+                    if (segue.DestinationViewController is CityDetailsViewController detailsController
+                        && sender is CityViewCell selectedCell)
+                    {
+                        detailsController.City = selectedCell.City;
+                    }
+                    break;
+                case ShowMapSegue:
+
+                    if (segue.DestinationViewController is MapViewController mapController)
+                    {
+                        mapController.Cities = Cities;
+                    }
+                    break;
             }
         }
 
