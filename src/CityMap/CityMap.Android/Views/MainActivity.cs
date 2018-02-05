@@ -1,10 +1,11 @@
 ﻿using Android.App;
 using Android.OS;
+using Android.Support.V7.App;
 
 namespace CityMap.Droid.Views
 {
     [Activity(Label = "@string/app_name", MainLauncher = true)]
-    public class MainActivity : Activity
+    public class MainActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
