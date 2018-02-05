@@ -158,6 +158,18 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Views\Cities\CitiesViewController.cs" />
+    <Compile Include="Views\Cities\CitiesViewController.designer.cs">
+      <DependentUpon>CitiesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cities\CityTableViewCell.cs" />
+    <Compile Include="Views\Cities\CityTableViewCell.designer.cs">
+      <DependentUpon>CityTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CityDetails\CityDetailsViewController.cs" />
+    <Compile Include="Views\CityDetails\CityDetailsViewController.designer.cs">
+      <DependentUpon>CityDetailsViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewController.cs" />
     <Compile Include="Views\ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
