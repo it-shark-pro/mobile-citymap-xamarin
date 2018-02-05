@@ -13,5 +13,8 @@ namespace CityMap.iOS.Views
     [Register ("ViewController")]
     partial class ViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }
