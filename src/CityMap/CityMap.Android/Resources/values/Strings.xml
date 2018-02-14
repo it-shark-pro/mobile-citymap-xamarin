@@ -1,6 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">CityMap</string>
-    <string name="activity_sities_title">Cities</string>
-    <string name="title_main_menu_show_on_map">Show on Map</string>
 </resources>
