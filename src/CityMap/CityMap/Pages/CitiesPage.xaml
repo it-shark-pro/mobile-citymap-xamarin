@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:CityMap.Controls;assembly=CityMap"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    x:Class="CityMap.Pages.CitiesPage"
+    Title="Cities"
+    IsBusy="{Binding IsBusy}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <DataTemplate x:Key="CityItemTemplate">
+                <Grid VerticalOptions="CenterAndExpand" ColumnSpacing="0" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="160" />
+                    </Grid.RowDefinitions>
+
+                    <ffimageloading:CachedImage
+                        HorizontalOptions="FillAndExpand"
+                        Aspect="AspectFill"
+                        WidthRequest="100"
+                        HeightRequest="160"
+                        DownsampleToViewSize="true"
+                        Source="{Binding Url}" />
+
+                    <Label
+                        Text="{Binding Title}"
+                        TextColor="White"
+                        FontSize="Medium"
+                        HorizontalTextAlignment="Center"
+                        VerticalOptions="End"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#99000000" />
+                </Grid>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" Text="Map" Priority="1" Command="{Binding GoToMapCommand}" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        
+        <ScrollView>
+            <controls:GridView
+                x:Name="CitiesGridView"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                Padding="8"
+                RowSpacing="8"
+                ColumnSpacing="8"
+                MaxColumns="3"
+                TileHeight="160"
+                ItemsSource="{Binding Cities}"
+                CommandParameter="{Binding}"
+                Command="{Binding GoToDetailsCommand}" 
+                ItemTemplate="{StaticResource CityItemTemplate}"
+                IsClippedToBounds="False" />
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>

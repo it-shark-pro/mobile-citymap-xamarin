@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="CityMap.Pages.CityDetailsPage"
+             Title="{Binding City.Title}">
+    <ScrollView>
+        <StackLayout Spacing="0">
+
+            <ffimageloading:CachedImage
+                x:Name="CityImage"
+                Source="{Binding City.Url}"
+                HeightRequest="400"
+                Aspect="AspectFill" />
+
+            <Label
+                Text="{Binding City.Description}"
+                FontSize="Medium"
+                Margin="12"
+                TextColor="Black" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
