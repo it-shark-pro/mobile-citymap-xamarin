@@ -139,6 +139,8 @@
 
 Финальный результат доступен в [master](https://github.com/it-shark-pro/mobile-citymap-xamarin) ветке и в качестве [Zip-архива](https://github.com/it-shark-pro/mobile-citymap-xamarin/archive/master.zip).
 
+Реализацию с использованием [Xamarin.Forms](https://www.xamarin.com/forms) вы сможете найти в ветке [forms](https://github.com/it-shark-pro/mobile-citymap-xamarin/tree/forms) и в качестве [Zip-архива](https://github.com/it-shark-pro/mobile-citymap-xamarin/archive/forms.zip).
+
 ## Q & A
 
 Если у Вас возникли какие-то вопросы или предложения, как улучшить материал - [дайте нам знать](https://github.com/it-shark-pro/mobile-citymap-xamarin/issues/new). :trophy: :+1:
