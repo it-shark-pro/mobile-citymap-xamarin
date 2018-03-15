@@ -27,8 +27,9 @@
 
 ## Установка и настройка
 
-- [System Requirements](https://developer.xamarin.com/guides/cross-platform/getting_started/requirements/)
-- [Установка Visual Studo, Xamarin и настройка Mac](https://docs.microsoft.com/ru-ru/visualstudio/cross-platform/setup-and-install)
+- [Системные требования](https://docs.microsoft.com/ru-ru/xamarin/cross-platform/get-started/requirements)
+- [Установка Xamarin для Visual Studio в Windows](https://docs.microsoft.com/ru-ru/xamarin/cross-platform/get-started/installation/windows)
+- [Настройка и установка Visual Studio для Mac](https://docs.microsoft.com/ru-ru/visualstudio/mac/installation)
 
 ## Задания
 
@@ -43,8 +44,8 @@
 
 **Полезные материалы:**
 
-- [Создание приложения Xamarin.Android](https://developer.xamarin.com/guides/android/getting_started/hello,android/hello,android_quickstart/#Walkthrough)
-- [Создание приложения Xamarin.iOS](https://developer.xamarin.com/guides/ios/getting_started/hello,_iOS/hello,iOS_quickstart/#Visual_Studio_Walkthrough)
+- [Создание приложения Xamarin.Android](https://docs.microsoft.com/ru-ru/xamarin/android/get-started/hello-android/hello-android-quickstart?tabs=vswin)
+- [Создание приложения Xamarin.iOS](https://docs.microsoft.com/ru-ru/xamarin/ios/get-started/hello-ios/hello-ios-quickstart?tabs=vsmac)
 
 - Android
   - [Полное руководство по Splash Screen на Android](https://habrahabr.ru/post/345380/)
@@ -68,12 +69,12 @@
 
 - Android
   - [Работа с ListView в Xamarin.Android](https://habrahabr.ru/post/301128/)
-  - [Xamarin.Android - ListView](https://developer.xamarin.com/guides/android/user_interface/layouts/list-view/)
+  - [Xamarin.Android - ListView](https://docs.microsoft.com/ru-ru/xamarin/android/user-interface/layouts/list-view/)
   - [Что такое Activity](http://developer.alexanderklimov.ru/android/theory/activity-theory.php)
   - [ListView](http://developer.alexanderklimov.ru/android/views/listview.php)
 
 - iOS
-  - [Working with Tables and Cells](https://developer.xamarin.com/guides/ios/user_interface/controls/tables/)
+  - [Работа с таблицами и ячейками](https://docs.microsoft.com/ru-ru/xamarin/ios/user-interface/controls/tables/)
   - [Create a Table View](https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/CreateATableView.html#//apple_ref/doc/uid/TP40015214-CH8-SW1)
   - [Implement Navigation](https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/ImplementNavigation.html#//apple_ref/doc/uid/TP40015214-CH16-SW1)
   - [Anatomy of Constraint](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/AnatomyofaConstraint.html#//apple_ref/doc/uid/TP40010853-CH9-SW1)
@@ -100,7 +101,7 @@
 - [Получение данных с сервера в json](https://metanit.com/sharp/xamarin/10.1.php)
 
 - Android
-  - [Xamarin.Android - RecyclerView](https://developer.xamarin.com/guides/android/user_interface/layouts/recycler-view/)
+  - [Xamarin.Android - RecyclerView](https://docs.microsoft.com/ru-ru/xamarin/android/user-interface/layouts/recycler-view/)
   - [RecyclerView](https://metanit.com/java/android/5.11.php)
   - [Оптимизация адаптера и View Holder](https://metanit.com/java/android/5.8.php)
 
@@ -113,8 +114,8 @@
 В рамках данного задания требуется организовать работу с базой данных. Полученные данные в рамках [Часть 2 (Part 2)](#Часть-2) должны сохраняться в кэш (SQLite, файл, др.), а после, в ситуации с отсутствие интернет-соединения/ошибкой при загрузке данных из сети, доставаться из нее и отображаться пользователю (можно использовать сторонние библиотеки, к примеру [MonkeyCache](https://github.com/jamesmontemagno/monkey-cache)).
 
 **Полезные материалы:**
-- [Xamarin.Android - Using SQLite.NET](https://developer.xamarin.com/guides/android/data-and-cloud-services/data-access/using-sqlite-orm/)
-- [Xamarin.iOS - Using SQLite.NET](https://developer.xamarin.com/guides/ios/data-and-cloud-services/data/using_sqlite_orm/)
+- [Xamarin.Android - использование SQLite.NET](https://docs.microsoft.com/ru-ru/xamarin/android/data-cloud/data-access/using-sqlite-orm)
+- [Xamarin.iOS - использование SQLite.NET](https://docs.microsoft.com/ru-ru/xamarin/ios/data-cloud/data/using-sqlite-orm)
 
 Результат, который должен получиться: [GitHub](https://github.com/it-shark-pro/mobile-citymap-xamarin/tree/part3) | [Zip](https://github.com/it-shark-pro/mobile-citymap-xamarin/archive/part3.zip)
 
@@ -127,10 +128,10 @@
 
 - Android
   - [Xamarin Android: Create Xamarin Android Google Map With Add Markers](http://www.c-sharpcorner.com/article/xamarin-android-create-google-map-with-marker/)
-  - [Google Maps API](https://developer.xamarin.com/guides/android/platform_features/maps_and_location/maps/maps-api/)
+  - [Google Maps API](https://docs.microsoft.com/ru-ru/xamarin/android/platform/maps-and-location/maps/maps-api)
 
 - iOS
-  - [Xamarin.iOS - Maps](https://developer.xamarin.com/guides/ios/user_interface/controls/ios_maps/)
+  - [Xamarin.iOS - Карты](https://docs.microsoft.com/ru-ru/xamarin/ios/user-interface/controls/ios-maps/)
   - [MapKit Tutorial](https://www.raywenderlich.com/160517/mapkit-tutorial-getting-started)
 
 Результат, который должен получиться: [GitHub](https://github.com/it-shark-pro/mobile-citymap-xamarin/tree/part4) | [Zip](https://github.com/it-shark-pro/mobile-citymap-xamarin/archive/part4.zip)
