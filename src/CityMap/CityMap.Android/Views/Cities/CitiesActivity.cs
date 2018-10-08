@@ -41,6 +41,12 @@ namespace CityMap.Droid.Views.Cities
             await LoadDataAsync();
         }
 
+        private void SetupAdapter()
+        {
+            _cityAdapter = new CityAdapter();
+            _cityAdapter.ItemClicked += CityAdapterOnItemClicked;
+        }
+
         private void SetupRecyclerView()
         {
             var citiesLayoutManager = new GridLayoutManager(ApplicationContext, ViewConstants.GridLayoutSpanCount);
@@ -49,12 +55,6 @@ namespace CityMap.Droid.Views.Cities
 
             citiesRecyclerView.SetLayoutManager(citiesLayoutManager);
             citiesRecyclerView.SetAdapter(_cityAdapter);
-        }
-
-        private void SetupAdapter()
-        {
-            _cityAdapter = new CityAdapter();
-            _cityAdapter.ItemClicked += CityAdapterOnItemClicked;
         }
 
         private async Task LoadDataAsync()
