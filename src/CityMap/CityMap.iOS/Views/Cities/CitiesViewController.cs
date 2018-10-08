@@ -50,7 +50,7 @@ namespace CityMap.iOS.Views.Cities
 
                     if (segue.DestinationViewController is MapViewController mapController)
                     {
-                        mapController.Cities = Cities;
+                        mapController.Cities = _cities;
                     }
                     break;
             }
