@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Linq;
 using System.Collections.Generic;
 using UIKit;
 using Foundation;
@@ -18,8 +17,7 @@ namespace CityMap.iOS.Views.Cities
         private const string ShowMapSegue = "ShowMap";
 
         private readonly ICityService _cityService = new CityService();
-
-        private IEnumerable<City> Cities { get; set; } = Enumerable.Empty<City>();
+        private readonly IList<City> _cities = new List<City>();
 
         public CitiesViewController(IntPtr handler) : base(handler)
         {
@@ -64,7 +62,14 @@ namespace CityMap.iOS.Views.Cities
 
             try
             {
-                Cities = await _cityService.LoadCitiesAsync();
+                var cities = await _cityService.LoadCitiesAsync();
+
+                _cities.Clear();
+
+                foreach (var city in cities)
+                {
+                    _cities.Add(city);
+                }
 
                 collectionView.ReloadData();
             }
@@ -90,14 +95,14 @@ namespace CityMap.iOS.Views.Cities
 
         public nint GetItemsCount(UICollectionView collectionView, nint section)
         {
-            return Cities.Count();
+            return _cities.Count;
         }
 
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
             if (collectionView.DequeueReusableCell(CityCellIdentifier, indexPath) is CityViewCell cityCell)
             {
-                cityCell.City = Cities.ToArray()[indexPath.Row];
+                cityCell.City = _cities[indexPath.Row];
 
                 return cityCell;
             }
